@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo }} - Biblioteca P2P{% endblock %}
+
+{% block content %}
+
+
+{% if medios %}
+    <ul>
+    {% for m in medios %}
+        <li><a href="/medio/{{ m.id }}/">{{ m }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No tengo medios disponibles.</p>
+{% endif %}
+
+
+{% endblock %}
