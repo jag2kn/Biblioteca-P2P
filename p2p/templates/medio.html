@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if medio %}
+<strong>Datos del medio:</strong><br/>
+id: {{ medio.id }} <br/>
+nombre: {{medio.titulo}}<br/>
+
+<strong>Propiedades del medio:</strong><br/>
+
+<table style="border: 1px solid grey;">
+<thead><tr>
+            <th>Nombre</th>
+            <th>Valor</th>
+		</tr></thead>
+<tbody>
+    {% for p in propiedades %}
+        <tr>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.valor }}</td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+
+
+<form action="/medio/{{medio.id}}/" method="GET">{% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }}: {{ field }}
+        </div>
+    {% endfor %}
+    <p><input type="submit" value="Agregar" /></p>
+</form>
+
+{% else %}
+    <p>Seleccione un medio.</p>
+{% endif %}
+
+
+{% endblock %}
